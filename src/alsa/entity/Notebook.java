@@ -1,42 +1,37 @@
 package alsa.entity;
 
-public class Notebook {
-    private String name;
-    public NotebookCategory category;
-    private int price;
+import alsa.entity.part.ComputerPart;
 
-    public Notebook(String name, NotebookCategory category , int price) {
-        this.name = name;
+public class Notebook extends Product{
+    private final NotebookCategory category;
+    private final ComputerPart[] computerParts;
+
+    public Notebook(String name, double price, int count, NotebookCategory category, ComputerPart[] computerParts) {
+        super(name, price, count);
         this.category = category;
-        this.price = price;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
+        this.computerParts = computerParts;
     }
 
     public NotebookCategory getCategory() {
         return category;
     }
 
-    public void setCategory(NotebookCategory category) {
-        this.category = category;
+    public ComputerPart[] getComputerParts() {
+        return computerParts;
     }
 
-    public int getPrice(){
-        return price;
+    @Override
+    public Product withDecreasedCount() {
+        return new Notebook(name, price, count-1, category, computerParts);
     }
 
-    public void setPrice(int price){
-        if(price < 0)
-            throw new RuntimeException("IllegalArgument");
-
-        this.price = price;
+    @Override
+    public Product withIncreasedCount() {
+        return new Notebook(name, price, count+1, category, computerParts);
     }
 
-
+    @Override
+    public boolean hasSpecialGuarantee() {
+        return true;
+    }
 }

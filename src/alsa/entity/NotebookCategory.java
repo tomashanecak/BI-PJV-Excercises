@@ -1,5 +1,5 @@
 package alsa.entity;
 
 public enum NotebookCategory {
-    BASIC, OFFICE, GAMING, PROFESIONAL
+    BASIC, OFFICE, GAMING, PROFESSIONAL, PROFESIONAL
 }
