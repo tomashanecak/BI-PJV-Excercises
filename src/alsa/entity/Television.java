@@ -1,18 +1,18 @@
 package alsa.entity;
 
 public class Television extends Product{
-    public Television(String name, double price, int count) {
-        super(name, price, count);
+    public Television(int id, String name, double price, int count) {
+        super(id, name, price, count);
     }
 
     @Override
     public Product withDecreasedCount() {
-        return new Television(name, price, count-1);
+        return new Television(id, name, price, count-1);
     }
 
     @Override
     public Product withIncreasedCount() {
-        return new Television(name, price, count+1);
+        return new Television(id, name, price, count+1);
     }
 
     @Override
@@ -23,7 +23,8 @@ public class Television extends Product{
     @Override
     public String toString() {
         return "Television{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", count=" + count +
                 '}';

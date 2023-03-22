@@ -26,8 +26,8 @@ public class EshopServiceImp implements EshopService{
     }
 
     @Override
-    public boolean sellProduct(String name) {
-        Optional<Product> optionalProduct = database.getProductByName(name);
+    public boolean sellProduct(int id) {
+        Optional<Product> optionalProduct = database.getProductById(id);
         if (optionalProduct.isEmpty())
             return false;
         Product product = optionalProduct.get();
@@ -38,8 +38,8 @@ public class EshopServiceImp implements EshopService{
     }
 
     @Override
-    public boolean returnProduct(String name) {
-        Optional<Product> optionalProduct = database.getProductByName(name);
+    public boolean returnProduct(int id) {
+        Optional<Product> optionalProduct = database.getProductById(id);
         if (optionalProduct.isEmpty())
             return false;
         Product product = optionalProduct.get();

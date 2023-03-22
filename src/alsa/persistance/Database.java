@@ -1,14 +1,13 @@
 package alsa.persistance;
 import alsa.entity.Product;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public interface Database {
     List<Product> getProducts();
-    Optional<Product> getProductByName(String name);
+    Optional<Product> getProductById(int id);
     void saveProduct(Product product);
     void removeProduct(Product product);
 
@@ -19,7 +18,7 @@ public interface Database {
         }
 
         @Override
-        public Optional<Product> getProductByName(String name) {
+        public Optional<Product> getProductById(int id) {
             return Optional.empty();
         }
 

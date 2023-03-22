@@ -8,8 +8,8 @@ public class Notebook extends Product{
     private final NotebookCategory category;
     private final ComputerPart[] computerParts;
 
-    public Notebook(String name, double price, int count, NotebookCategory category, ComputerPart[] computerParts) {
-        super(name, price, count);
+    public Notebook(int id, String name, double price, int count, NotebookCategory category, ComputerPart[] computerParts) {
+        super(id, name, price, count);
         this.category = category;
         this.computerParts = computerParts;
     }
@@ -24,12 +24,12 @@ public class Notebook extends Product{
 
     @Override
     public Product withDecreasedCount() {
-        return new Notebook(name, price, count-1, category, computerParts);
+        return new Notebook(id, name, price, count-1, category, computerParts);
     }
 
     @Override
     public Product withIncreasedCount() {
-        return new Notebook(name, price, count+1, category, computerParts);
+        return new Notebook(id, name, price, count+1, category, computerParts);
     }
 
     @Override
@@ -42,6 +42,7 @@ public class Notebook extends Product{
         return "Notebook{" +
                 "category=" + category +
                 ", computerParts=" + Arrays.toString(computerParts) +
+                ", id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", count=" + count +

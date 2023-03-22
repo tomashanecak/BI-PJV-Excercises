@@ -35,18 +35,18 @@ public class Main {
         printProducts(eshopService.getProducts());
 
         System.out.println("---------SELLING LENOVO------------");
-        eshopService.sellProduct(lenovoE500.getName());
-        eshopService.sellProduct(lenovoE500.getName());
-        eshopService.sellProduct(lenovoE500.getName());
+        eshopService.sellProduct(lenovoE500.getId());
+        eshopService.sellProduct(lenovoE500.getId());
+        eshopService.sellProduct(lenovoE500.getId());
 
         System.out.println("---------SELLING SAMSUNG------------");
-        eshopService.sellProduct(samsungMediaPlus.getName());
+        eshopService.sellProduct(samsungMediaPlus.getId());
 
         System.out.println("---------RETURNING SAMSUNG------------");
-        eshopService.returnProduct(samsungMediaPlus.getName());
+        eshopService.returnProduct(samsungMediaPlus.getId());
 
         System.out.println("---------RETURNING LENOVO------------");
-        eshopService.returnProduct(lenovoE500.getName());
+        eshopService.returnProduct(lenovoE500.getId());
 
         System.out.println("---------SORT USING METHOD COMPARABLE------------");
         List<Product> products = eshopService.getProducts();
