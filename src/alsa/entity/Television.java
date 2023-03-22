@@ -19,4 +19,13 @@ public class Television extends Product{
     public boolean hasSpecialGuarantee() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Television{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                '}';
+    }
 }

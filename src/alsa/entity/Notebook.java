@@ -2,6 +2,8 @@ package alsa.entity;
 
 import alsa.entity.part.ComputerPart;
 
+import java.util.Arrays;
+
 public class Notebook extends Product{
     private final NotebookCategory category;
     private final ComputerPart[] computerParts;
@@ -33,5 +35,16 @@ public class Notebook extends Product{
     @Override
     public boolean hasSpecialGuarantee() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Notebook{" +
+                "category=" + category +
+                ", computerParts=" + Arrays.toString(computerParts) +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                '}';
     }
 }

@@ -10,4 +10,11 @@ public class Disk extends ComputerPart{
     public int getCapacity() {
         return capacity;
     }
+
+    @Override
+    public String toString() {
+        return "Disk{" +
+                "capacity=" + capacity +
+                '}';
+    }
 }

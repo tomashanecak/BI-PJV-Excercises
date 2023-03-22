@@ -4,22 +4,23 @@ import alsa.entity.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class InMemoryDatabase implements Database
 {
     private final List<Product> products = new ArrayList<>();
 
     @Override
-    public Product[] getProducts() {
-        return new Product[0];
+    public List<Product> getProducts() {
+        return new ArrayList<>(products);
     }
 
     @Override
-    public Product getProductByName(String name) {
+    public Optional<Product> getProductByName(String name) {
         for (Product product : products)
             if (product.getName().equals(name))
-                return product;
-        return null;
+                return Optional.of(product);
+        return Optional.empty();
     }
 
     @Override

@@ -3,6 +3,9 @@ package alsa.services;
 import alsa.entity.Product;
 import alsa.persistance.Database;
 
+import java.util.List;
+import java.util.Optional;
+
 public class EshopServiceImp implements EshopService{
     private final Database database;
 
@@ -24,24 +27,30 @@ public class EshopServiceImp implements EshopService{
 
     @Override
     public boolean sellProduct(String name) {
-        Product toSell = database.getProductByName(name);
-        if (toSell == null || toSell.getCount() == 0)
+        Optional<Product> optionalProduct = database.getProductByName(name);
+        if (optionalProduct.isEmpty())
             return false;
-        database.saveProduct(toSell.withDecreasedCount());
+        Product product = optionalProduct.get();
+        if(product.getCount() == 0)
+            return false;
+        database.saveProduct(product.withDecreasedCount());
         return true;
     }
 
     @Override
     public boolean returnProduct(String name) {
-        Product toSell = database.getProductByName(name);
-        if (toSell == null || !toSell.hasSpecialGuarantee())
+        Optional<Product> optionalProduct = database.getProductByName(name);
+        if (optionalProduct.isEmpty())
             return false;
-        database.saveProduct(toSell.withIncreasedCount());
+        Product product = optionalProduct.get();
+        if(!product.hasSpecialGuarantee())
+            return false;
+        database.saveProduct(product.withIncreasedCount());
         return true;
     }
 
     @Override
-    public Product[] getProducts() {
+    public List<Product> getProducts() {
         return database.getProducts();
     }
 }

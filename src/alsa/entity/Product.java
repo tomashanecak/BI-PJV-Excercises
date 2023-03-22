@@ -1,6 +1,6 @@
 package alsa.entity;
 
-public abstract class Product {
+public abstract class Product implements Comparable<Product>{
     final protected String name;
     final protected double price;
     final protected int count;
@@ -26,4 +26,9 @@ public abstract class Product {
     public abstract Product withDecreasedCount();
     public abstract  Product withIncreasedCount();
     public abstract boolean hasSpecialGuarantee();
+
+    @Override
+    public int compareTo(Product o) {
+        return name.compareTo(o.getName());
+    }
 }

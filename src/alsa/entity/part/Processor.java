@@ -10,4 +10,11 @@ public class Processor extends ComputerPart{
     public ProcessorSpeed getSpeed() {
         return speed;
     }
+
+    @Override
+    public String toString() {
+        return "Processor{" +
+                "speed=" + speed +
+                '}';
+    }
 }
