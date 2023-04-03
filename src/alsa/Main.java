@@ -3,6 +3,7 @@ package alsa;
 import alsa.comparator.ProductNameComparator;
 import alsa.comparator.ProductPriceComparator;
 import alsa.entity.Product;
+import alsa.persistance.FileDatabase;
 import alsa.persistance.InMemoryDatabase;
 import alsa.services.EshopService;
 import alsa.services.EshopServiceImp;
@@ -29,7 +30,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EshopService eshopService = new EshopServiceImp(new InMemoryDatabase());
+        EshopService eshopService = new EshopServiceImp(new FileDatabase());
         eshopService.addProductsToStorage(lenovoE500, hpBusinnesPlus, samsungMediaPlus);
 
         printProducts(eshopService.getProducts());

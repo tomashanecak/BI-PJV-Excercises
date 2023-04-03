@@ -1,5 +1,7 @@
 package alsa.entity.part;
 
-public abstract class ComputerPart {
+import java.io.Serializable;
+
+public abstract class ComputerPart implements Serializable {
 
 }

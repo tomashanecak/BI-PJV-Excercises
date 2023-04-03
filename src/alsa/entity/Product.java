@@ -1,8 +1,9 @@
 package alsa.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Product implements Comparable<Product>{
+public abstract class Product implements Comparable<Product>, Serializable {
     final protected int id;
     final protected String name;
     final protected double price;
