@@ -26,19 +26,28 @@ public class EshopServiceImp implements EshopService{
     }
 
     @Override
-    public boolean sellProduct(int id) {
+    public synchronized boolean sellProduct(int id) {
         Optional<Product> optionalProduct = database.getProductById(id);
         if (optionalProduct.isEmpty())
             return false;
         Product product = optionalProduct.get();
-        if(product.getCount() == 0)
-            return false;
+        while(product.getCount() == 0) {
+            if(!product.hasSpecialGuarantee())
+                return false;
+            System.out.println("Waiting for product id: " + id);
+            try {
+                wait(); // Wait for notify
+            } catch (InterruptedException e) {
+                return false;
+            }
+            product = database.getProductById(id).get();
+        }
         database.saveProduct(product.withDecreasedCount());
         return true;
     }
 
     @Override
-    public boolean returnProduct(int id) {
+    public synchronized boolean returnProduct(int id) {
         Optional<Product> optionalProduct = database.getProductById(id);
         if (optionalProduct.isEmpty())
             return false;
@@ -46,6 +55,7 @@ public class EshopServiceImp implements EshopService{
         if(!product.hasSpecialGuarantee())
             return false;
         database.saveProduct(product.withIncreasedCount());
+        notifyAll(); // Notifies all threads that product has been returned
         return true;
     }
 
